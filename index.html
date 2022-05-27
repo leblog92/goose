@@ -11,6 +11,7 @@ body{
 overflow:hidden;
 background:#000;
 }
+#
 </style>
 </head>
 <body>
@@ -18,9 +19,13 @@ background:#000;
 <rect width="160" height="90" fill="#7f00ff"></rect>
 <rect width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"></rect>
 <rect x="80" width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"></rect>
+<circle cx="80" cy="45" r="10" id="start"
 </svg>
 <script>
+document.getElementById("start").addEventListener("click",function(){
+alert("open");
 
+});
 </script>
 </body>
 </html>
