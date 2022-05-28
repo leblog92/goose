@@ -13,7 +13,7 @@
 		background:#000;
 	}
 	.tr3{
-		transition:3s;
+		transition:6s;
 	}
 </style>
 </head>
@@ -39,7 +39,8 @@
 		</g>
 	</svg>
 <script>
-	var audio_open = new Audio("open.mp3");
+	var audio_open=new Audio("open.mp3");
+
 	document.getElementById("start").addEventListener("click",open);
 
 	function open(){
@@ -49,10 +50,12 @@
 		document.getElementById("right_door").setAttribute("transform","translate(90 0)");
 	}
 
-	window.onload=function(){
+	function begin(){
 		document.getElementById("brect").setAttribute("fill","#fff");
 		document.getElementById("start").addEventListener("click",open);
 	}
+
+	window.onload=begin;
 </script>
 </body>
 </html>
