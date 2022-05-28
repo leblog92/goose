@@ -12,7 +12,7 @@
 		user-select:none;
 		background:#000;
 	}
-	.move3{
+	.tr3{
 		transition:3s;
 	}
 </style>
@@ -21,15 +21,15 @@
 	<svg width="100%" height="100%" viewbox="0 0 160 90">
 		<defs>
 			<mask id="hide">
-				<rect width="160" height="90" fill="#fff"/>
+				<rect width="160" height="90" class="tr3" id="brect" fill="#000"/>
 			</mask>
 		</defs>
 		<g style="mask:url(#hide)">
 			<rect width="160" height="90" fill="#7f00ff"></rect>
-			<g id="left_door" class="move3 "transform="translate(0 0)">
+			<g id="left_door" class="tr3 "transform="translate(0 0)">
 				<rect width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"/>
 			</g>
-			<g id="right_door" class="move3" transform="translate(0 0)">
+			<g id="right_door" class="tr3" transform="translate(0 0)">
 				<rect x="80" width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"/>
 				<g id="start">
 					<circle cx="80" cy="45" r="10" fill="#777" stroke="#444" stroke-width=".2"/>
@@ -39,12 +39,19 @@
 		</g>
 	</svg>
 <script>
+	var audio_open = new Audio("open.mp3");
 	document.getElementById("start").addEventListener("click",open);
 
 	function open(){
 		document.getElementById("start").removeEventListener("click",open);
+		audio_open.play();
 		document.getElementById("left_door").setAttribute("transform","translate(-90 0)");
 		document.getElementById("right_door").setAttribute("transform","translate(90 0)");
+	}
+
+	window.onload=function(){
+		document.getElementById("brect").setAttribute("fill","#fff");
+		document.getElementById("start").addEventListener("click",open);
 	}
 </script>
 </body>
