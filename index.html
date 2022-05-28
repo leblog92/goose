@@ -3,29 +3,42 @@
 <head>
 <title>Goosy Game</title>
 <style>
-html,body{
-height:100%;
-margin:0;
-}
-body{
-overflow:hidden;
-background:#000;
-}
-#
+	html,body{
+		height:100%;
+		margin:0;
+	}
+	body{
+		overflow:hidden;
+		user-select:none;
+		background:#000;
+	}
+	.move3{
+		transition:3s;
+	}
 </style>
 </head>
 <body>
 <svg width="100%" height="100%" viewbox="0 0 160 90">
-<rect width="160" height="90" fill="#7f00ff"></rect>
-<rect width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"></rect>
-<rect x="80" width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"></rect>
-<circle cx="80" cy="45" r="10" id="start"
-</svg>
+	<rect width="160" height="90" fill="#7f00ff"></rect>
+	<g id="left_door" class="move3 "transform="translate(0 0)">
+		<rect width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"/>
+	</g>
+	<g id="right_door" class="move3" transform="translate(0 0)">
+		<rect x="80" width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"/>
+		<g id="start">
+			<circle cx="80" cy="45" r="10" fill="#777" stroke="#444" stroke-width=".2"/>
+			<text font-size="5" font-family="arial" x="80" y="45" dominant-baseline="middle" text-anchor="middle">START</text>
+		</g>
+	</g>
+</div>
 <script>
-document.getElementById("start").addEventListener("click",function(){
-alert("open");
-
-});
+document.getElementById("start").addEventListener("click",open);
+var ww=window.innerWidth;
+function open(){
+document.getElementById("start").removeEventListener("click",open);
+document.getElementById("left_door").setAttribute("transform","translate(-100 0)");
+document.getElementById("right_door").setAttribute("transform","translate(100 0)");
+}
 </script>
 </body>
 </html>
