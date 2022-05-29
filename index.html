@@ -11,9 +11,10 @@
 		overflow:hidden;
 		user-select:none;
 		background:#000;
+		font-family:sans-serif;
 	}
 	.tr3{
-		transition:6s;
+		transition:3s;
 	}
 </style>
 </head>
@@ -26,6 +27,13 @@
 		</defs>
 		<g style="mask:url(#hide)">
 			<rect width="160" height="90" fill="#7f00ff"></rect>
+			<path d="m7.5 7.5L152.5 7.5L152.5 17.5" fill="none" stroke="#000" stroke-width="2.5"/>
+			<rect width="5" height="5" x="5" y="5" opacity="0.5"/>
+			<rect width="5" height="5" x="150" y="5" opacity="0.5"/>
+			<rect width="5" height="5" x="150" y="15" opacity="0.5"/>
+			
+			
+			<g opacity="0.4">
 			<g id="left_door" class="tr3 "transform="translate(0 0)">
 				<rect width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"/>
 			</g>
@@ -33,14 +41,19 @@
 				<rect x="80" width="80" height="90" fill="#777" stroke="#444" stroke-width=".2"/>
 				<g id="start">
 					<circle cx="80" cy="45" r="10" fill="#777" stroke="#444" stroke-width=".2"/>
-					<text font-size="5" font-family="arial" x="80" y="45" dominant-baseline="middle" text-anchor="middle">START</text>
+					<text font-size="5" x="80" y="45" dominant-baseline="middle" text-anchor="middle">START</text>
 				</g>
 			</g>
+			</g>
+			
 		</g>
 	</svg>
+	<div id="div1" style="position:fixed;color:#fff;top:0;left:0"></div>
 <script>
 	var audio_open=new Audio("open.mp3");
-
+	var div1=document.getElementById("div1");
+	
+	div1.innerHTML="7.5 7.5L152.5 7.5L152.5 17.5";
 	document.getElementById("start").addEventListener("click",open);
 
 	function open(){
