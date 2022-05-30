@@ -31,10 +31,13 @@
 		<g style="mask:url(#hide)">
 			<rect width="160" height="90" fill="#8e3e8e"></rect>
 
-			<path d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#000" stroke-width="1.5"/>
-			<path stroke-linecap="round" stroke-dasharray="0 10" d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#000" stroke-width="4"/>
-			<circle cx="10" cy="10" r="3.5"/>
-			<circle cx="150" cy="70" r="3.5"/>
+			<path d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#000" stroke-width="3"/>
+			<path stroke-linecap="round" stroke-dasharray="0 10" d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#000" stroke-width="7"/>
+			<path stroke-linecap="round" stroke-dasharray="0 10" d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#8e3e8e" stroke-width="2"/>
+			
+			<circle cx="10" cy="10" r="4"/>
+			<circle cx="150" cy="70" r="4"/>
+			
 			<circle cx="80" cy="40" r="1" fill="#0f0">
 				<animate attributename="fill" repeatcount="indefinite" dur="1s" begin="0s" values="#0f0;#040;#0f0"/>
 			</circle>
@@ -182,7 +185,7 @@
 			d1_img.setAttribute("xlink:href",d_face[d1_value]);
 			p1.setAttribute("transform","translate("+coordinates[p1_coor]+")");
 			c1.setAttribute("r",1);
-			c1.setAttribute("cx",-2);
+			setTimeout(function(){c1.setAttribute("cx",-2);},500*d1_value);
 			p1_go=false;
 			p2_go=true;
 			check_position();
@@ -206,7 +209,7 @@
 			d2_img.setAttribute("xlink:href",d_face[d2_value]);
 			p2.setAttribute("transform","translate("+coordinates[p2_coor]+")");
 			c2.setAttribute("r",1);
-			c2.setAttribute("cx",2);
+			setTimeout(function(){c2.setAttribute("cx",2);},500*d2_value);
 			p2_go=false;
 			p1_go=true;
 			check_position();
