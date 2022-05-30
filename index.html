@@ -18,7 +18,7 @@
 		transition:3s;
 	}
 	#p1,#p2{
-		transition:0.5s;	
+		transition:1s;	
 	}
 	#mask_rect{
 		transition:6s;
@@ -39,8 +39,8 @@
 
 			<path d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#000" stroke-width="1.5"/>
 			<path stroke-linecap="round" stroke-dasharray="0 10" d="m10 10L150 10L150 20L10 20L10 30L10 30L150 30L150 40L10 40L10 50L10 50L150 50L150 60L10 60L10 70L10 70L150 70" fill="none" stroke="#000" stroke-width="5"/>
-			<circle cx="10" cy="10" r="3"/>
-			<circle cx="150" cy="70" r="3"/>
+			<circle cx="10" cy="10" r="3.5"/>
+			<circle cx="150" cy="70" r="3.5"/>
 			<circle cx="80" cy="40" r="1" fill="#0f0">
 				<animate attributename="fill" repeatcount="indefinite" dur="1s" begin="0s" values="#0f0;#000;#0f0"/>
 			</circle>
@@ -90,8 +90,10 @@
 		</g>
 	</svg>
 	<div id="div1" style="position:fixed;color:#fff;top:0;left:0"></div>
+	
 <script>
 	var audio_open=new Audio("open.mp3");
+	var audio_roll=new Audio("roll.mp3");
 	var div1=document.getElementById("div1");
 	var p1=document.getElementById("p1");
 	var p2=document.getElementById("p2");
@@ -99,6 +101,15 @@
 	var d2_img=document.getElementById("d2_img");
 	var coordinates=["10 10","20 10","30 10","40 10","50 10","60 10","70 10","80 10","90 10","100 10","110 10","120 10","130 10","140 10","150 10","150 20","140 20","130 20","120 20","110 20","100 20","90 20","80 20","70 20","60 20","50 20","40 20","30 20","20 20","10 20","10 30","20 30","30 30","40 30","50 30","60 30","70 30","80 30","90 30","100 30","110 30","120 30","130 30","140 30","150 30","150 40","140 40","130 40","120 40","110 40","100 40","90 40","80 40","70 40","60 40","50 40","40 40","30 40","20 40","10 40","10 50","20 50","30 50","40 50","50 50","60 50","70 50","80 50","90 50","100 50","110 50","120 50","130 50","140 50","150 50","150 60","140 60","130 60","120 60","110 60","100 60","90 60","80 60","70 60","60 60","50 60","40 60","30 60","20 60","10 60","10 70","20 70","30 70","40 70","50 70","60 70","70 70","80 70","90 70","100 70","110 70","120 70","130 70","140 70","150 70"];
 	var end_coor=coordinates.length-1;
+	var d_face=["blank.png","d1.png","d2.png","d3.png","d4.png","d5.png","d6.png"];
+	var p1_coor=0;
+	var p2_coor=0;
+	var p1_win=0;
+	var p2_win=0;
+	var p1_go=true;
+	var p2_go=false;
+	var d1_value=0;
+	var d2_value=0;
 	
 	function init(){
 		div1.innerHTML="Game loaded";
@@ -115,50 +126,68 @@
 		setTimeout(begin,3000);
 	}
 
+	function next_turn(){
+		if(p1_go==true){
+			d1_img.addEventListener("click",roll_d1);
+			d1_img.setAttribute("xlink:href","roll.gif");
+			d1_img.style.cursor="pointer";
+		}
+
+		if(p2_go==true){
+			d2_img.addEventListener("click",roll_d2);
+			d2_img.setAttribute("xlink:href","roll.gif");
+			d2_img.style.cursor="pointer";
+		}
+	}
+
+	/*
+	function check_position(){
+		if(p1_coor==53||p2_coor==53){
+			[p1_coor,p2_coor]=[p2_coor,p1_coor];
+			setTimeout(function(){
+					p1.setAttribute("transform","translate("+coordinates[p1_coor]+")");
+					p2.setAttribute("transform","translate("+coordinates[p2_coor]+")");
+				},100)
+		}
+		if(p1_coor==end_coor){p1_win++;p1_coor=0;p1_go=false;}
+		if(p2_coor==end_coor){p2_win++;p2_coor=0;p2_go=false;}
+	}*/	
+
 	function begin(){
-		var p1_coor=0;
-		var p2_coor=0;
-		var p1_win=0;
-		var p2_win=0;
-		var p1_go=true;
-		var p2_go=false;
-		var d1_value=0;
-		var d2_value=0;
+		next_turn();
+	}
 
-				if(p1_go==true){
-					d1_img.addEventListener("click",roll_d1);
-					d1_img.setAttribute("xlink:href","roll.gif");
-					d1_img.style.cursor="pointer";
-					p1_coor=p1_coor+d1_value;
-				}
+	function roll_d1(){
+		d1_img.removeEventListener("click",roll_d1);
+		d1_img.style.cursor="default";
+		d1_img.setAttribute("xlink:href","rolling.gif");
+		audio_roll.play();
+		setTimeout(function(){
+			d1_value=Math.round(Math.random()*5)+1;
+			d1_img.setAttribute("xlink:href",d_face[d1_value]);
+			p1_coor=p1_coor+d1_value;
+			p1.setAttribute("transform","translate("+coordinates[p1_coor]+")");
+			p1_go=false;
+			p2_go=true;
+			next_turn();
+		},1000);
+	}
 
-				if(p2_go==true){
-					p2_coor=p2_coor+Math.round(Math.random()*5)+1;
-				}
-				
-				div1.innerHTML="p1 coordinates: "+p1_coor+"<br>p2 coordinates: "+p2_coor;
-				
-				//if(p1_go==false&&p2_go==false){p1_go=true;p2_go=false;}
-				if(p1_coor>end_coor){p1_coor=end_coor;}
-				if(p2_coor>end_coor){p2_coor=end_coor;}
-				p1.setAttribute("transform","translate("+coordinates[p1_coor]+")");
-				p2.setAttribute("transform","translate("+coordinates[p2_coor]+")");
-
-				if(p1_coor==53||p2_coor==53){
-					[p1_coor,p2_coor]=[p2_coor,p1_coor];
-					setTimeout(function(){
-							p1.setAttribute("transform","translate("+coordinates[p1_coor]+")");
-							p2.setAttribute("transform","translate("+coordinates[p2_coor]+")");
-						},100)
-					}
-
-				if(p1_coor==end_coor){p1_win++;p1_coor=0;p1_go=false;}
-				if(p2_coor==end_coor){p2_win++;p2_coor=0;p2_go=false;}
-			}
-
-			function roll_d1{
-				
-			}
+	function roll_d2(){
+		d2_img.removeEventListener("click",roll_d2);
+		d2_img.style.cursor="default";
+		d2_img.setAttribute("xlink:href","rolling.gif");
+		audio_roll.play();
+		setTimeout(function(){
+			d2_value=Math.round(Math.random()*5)+1;
+			d2_img.setAttribute("xlink:href",d_face[d2_value]);
+			p2_coor=p2_coor+d2_value;
+			p2.setAttribute("transform","translate("+coordinates[p2_coor]+")");
+			p2_go=false;
+			p1_go=true;
+			next_turn();
+		},1000);
+	}
 
 	window.onload=init;
 </script>
