@@ -43,7 +43,7 @@
 			</circle>
 			
 			<g id="checkered" transform="translate(10 10)">
-				<image width="4" height="4" xlink:href="start.png" x="-2" y="-2"/>
+				<image width="3" height="3" xlink:href="start.png" x="-1.5" y="-1.5"/>
 			</g>
 			
 			<g id="trophy" transform="translate(150 70)">
@@ -176,7 +176,7 @@
 		if(p1_coor>end_coor){p1_coor=end_coor}
 		p1.style.transition=500*d1_value+"ms";
 		c1.style.transition="500ms";
-		c1.setAttribute("r",3);
+		c1.setAttribute("r",2);
 		c1.setAttribute("cx",0);
 		setTimeout(function(){
 			d1_img.setAttribute("xlink:href",d_face[d1_value]);
@@ -199,7 +199,7 @@
 		p2_coor=p2_coor+d2_value;
 		p2.style.transition=500*d2_value+"ms";
 		c2.style.transition="500ms";
-		c2.setAttribute("r",3);
+		c2.setAttribute("r",2);
 		c2.setAttribute("cx",0);
 		if(p2_coor>end_coor){p2_coor=end_coor}
 		setTimeout(function(){
