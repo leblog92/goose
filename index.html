@@ -14,15 +14,8 @@
 		background:#000;
 		font-family:sans-serif;
 	}
-	.door{
-		transition:3s;
-	}
-	#p1,#p2{
-		transition:1s;	
-	}
-	#mask_rect{
-		transition:6s;
-	}
+	.door{transition:3s;}
+	#mask_rect{transition:6s;}
 	
 </style>
 </head>
@@ -140,8 +133,7 @@
 		}
 	}
 
-	/*
-	function check_position(){
+	/*function check_position(){
 		if(p1_coor==53||p2_coor==53){
 			[p1_coor,p2_coor]=[p2_coor,p1_coor];
 			setTimeout(function(){
@@ -162,10 +154,11 @@
 		d1_img.style.cursor="default";
 		d1_img.setAttribute("xlink:href","rolling.gif");
 		audio_roll.play();
+		d1_value=Math.round(Math.random()*5)+1;
+		p1_coor=p1_coor+d1_value;
 		setTimeout(function(){
-			d1_value=Math.round(Math.random()*5)+1;
 			d1_img.setAttribute("xlink:href",d_face[d1_value]);
-			p1_coor=p1_coor+d1_value;
+			p1.style.transition=500*d1_value+"ms";
 			p1.setAttribute("transform","translate("+coordinates[p1_coor]+")");
 			p1_go=false;
 			p2_go=true;
@@ -178,10 +171,11 @@
 		d2_img.style.cursor="default";
 		d2_img.setAttribute("xlink:href","rolling.gif");
 		audio_roll.play();
+		d2_value=Math.round(Math.random()*5)+1;
+		p2_coor=p2_coor+d2_value;
 		setTimeout(function(){
-			d2_value=Math.round(Math.random()*5)+1;
 			d2_img.setAttribute("xlink:href",d_face[d2_value]);
-			p2_coor=p2_coor+d2_value;
+			p2.style.transition=500*d2_value+"ms";
 			p2.setAttribute("transform","translate("+coordinates[p2_coor]+")");
 			p2_go=false;
 			p1_go=true;
